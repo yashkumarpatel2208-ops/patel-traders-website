@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patel Traders — Water Purifiers &amp; RO Systems</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --bg: #F5F8F8;
+  --panel: #FFFFFF;
+  --ink: #0C2226;
+  --ink-soft: #4B6469;
+  --teal: #0E6B6B;
+  --teal-deep: #093F3F;
+  --aqua: #22B8CF;
+  --brass: #B9812E;
+  --brass-soft: #F1E4CC;
+  --line: #DCE6E6;
+  --danger: #C4482E;
+  --radius: 10px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3{
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+  color: var(--teal-deep);
+  letter-spacing: -0.01em;
+}
+.mono{ font-family: 'IBM Plex Mono', monospace; }
+a{ color: inherit; }
+img{ max-width:100%; display:block; }
+.wrap{ max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+  outline: 3px solid var(--aqua);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- header ---------- */
+header{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(245,248,248,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 24px;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:'Space Grotesk', sans-serif; font-weight:700; font-size: 1.15rem;
+  color: var(--teal-deep);
+}
+.brand .mark{
+  width:34px; height:34px; border-radius: 8px;
+  background: linear-gradient(160deg, var(--teal) 0%, var(--aqua) 100%);
+  display:flex; align-items:center; justify-content:center;
+  color:white; font-weight:700; font-size:1rem;
+}
+.brand small{
+  display:block; font-family:'Inter'; font-weight:500; font-size:0.65rem;
+  color: var(--ink-soft); letter-spacing: 0.08em; text-transform:uppercase;
+}
+.nav-links{ display:flex; gap:22px; align-items:center; font-size:0.92rem; font-weight:500; }
+.nav-links a{ text-decoration:none; color: var(--ink-soft); }
+.nav-links a:hover{ color: var(--teal); }
+.call-btn{
+  background: var(--teal); color:white !important; padding:9px 16px;
+  border-radius: 100px; font-weight:600; text-decoration:none; font-size:0.88rem;
+  white-space:nowrap;
+}
+.call-btn:hover{ background: var(--teal-deep); }
+@media (max-width:760px){ .nav-links a:not(.call-btn){ display:none; } }
+
+/* ---------- hero ---------- */
+.hero{ padding: 64px 0 40px; }
+.hero-grid{
+  display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items:center;
+}
+@media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr; } }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.04em;
+  color: var(--teal); background: #E4F2F2; border:1px solid #CFE7E7;
+  padding: 5px 10px; border-radius: 100px; margin-bottom: 18px;
+}
+.eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--aqua); }
+
+.hero h1{
+  font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+  font-weight: 700; line-height:1.08;
+}
+.hero h1 em{ font-style:normal; color: var(--teal); }
+.hero p.lede{
+  margin-top:18px; font-size:1.08rem; color: var(--ink-soft); max-width: 46ch;
+}
+.hero-ctas{ margin-top: 30px; display:flex; gap:14px; flex-wrap:wrap; }
+.btn-primary{
+  background: var(--brass); color:white; text-decoration:none;
+  padding: 14px 24px; border-radius: 100px; font-weight:600; font-size:0.95rem;
+  display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer;
+}
+.btn-primary:hover{ background:#9C6C22; }
+.btn-ghost{
+  border: 1.5px solid var(--line); text-decoration:none; color: var(--ink);
+  padding: 13px 22px; border-radius:100px; font-weight:600; font-size:0.95rem;
+}
+.btn-ghost:hover{ border-color: var(--teal); color: var(--teal); }
+
+.trustline{
+  margin-top: 28px; display:flex; gap: 22px; flex-wrap:wrap;
+  font-size:0.82rem; color: var(--ink-soft);
+}
+.trustline strong{ color: var(--teal-deep); font-family:'Space Grotesk'; }
+
+/* ---------- TDS gauge signature ---------- */
+.gauge-card{
+  background: var(--panel); border:1px solid var(--line); border-radius: 18px;
+  padding: 26px 26px 20px; box-shadow: 0 20px 40px -28px rgba(9,63,63,0.35);
+}
+.gauge-card .label-row{
+  display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 6px;
+}
+.gauge-card .label-row h3{ font-size:1rem; }
+.gauge-card .label-row span{ font-family:'IBM Plex Mono'; font-size:0.7rem; color: var(--ink-soft); }
+
+.gauge-svg{ width:100%; height:auto; }
+.gauge-reading{
+  text-align:center; margin-top: -34px;
+}
+.gauge-reading .num{
+  font-family:'IBM Plex Mono'; font-weight:500; font-size: 2.6rem; color: var(--teal-deep);
+}
+.gauge-reading .unit{ font-family:'IBM Plex Mono'; font-size:0.85rem; color: var(--ink-soft); }
+.gauge-reading .status{
+  margin-top:4px; font-size:0.85rem; font-weight:600; color: var(--teal);
+}
+.gauge-foot{
+  display:flex; justify-content:space-between; margin-top: 14px; padding-top:14px;
+  border-top:1px dashed var(--line); font-size:0.78rem; color: var(--ink-soft);
+}
+.gauge-foot b{ color: var(--ink); }
+
+/* ---------- section shell ---------- */
+section{ padding: 74px 0; }
+.section-head{ max-width: 620px; margin-bottom: 40px; }
+.section-head .eyebrow{ margin-bottom: 14px; }
+.section-head h2{ font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.section-head p{ color: var(--ink-soft); margin-top:12px; font-size:1rem; }
+
+/* ---------- products ---------- */
+.product-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width:900px){ .product-grid{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width:600px){ .product-grid{ grid-template-columns: 1fr; } }
+
+.pcard{
+  background: var(--panel); border:1px solid var(--line); border-radius: 14px;
+  padding: 22px; display:flex; flex-direction:column; gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pcard:hover{ transform: translateY(-3px); box-shadow: 0 16px 30px -22px rgba(9,63,63,0.4); }
+.pcard .tech{
+  font-family:'IBM Plex Mono'; font-size:0.68rem; letter-spacing:0.05em;
+  color: var(--brass); text-transform:uppercase;
+}
+.pcard h3{ font-size:1.15rem; }
+.pcard p{ color: var(--ink-soft); font-size:0.92rem; margin:0; }
+.pcard .specs{
+  margin-top:auto; padding-top:12px; border-top:1px solid var(--line);
+  font-family:'IBM Plex Mono'; font-size:0.76rem; color: var(--ink-soft);
+  display:flex; flex-direction:column; gap:4px;
+}
+.pcard .specs b{ color: var(--ink); }
+.pcard .enquire{
+  margin-top:10px; font-size:0.85rem; font-weight:600; color: var(--teal); text-decoration:none;
+}
+.pcard .enquire:hover{ text-decoration:underline; }
+
+/* ---------- process ---------- */
+.process{ display:grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+@media (max-width:900px){ .process{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width:560px){ .process{ grid-template-columns: 1fr; } }
+.step{
+  background: var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px;
+}
+.step .n{
+  font-family:'IBM Plex Mono'; color: var(--aqua); font-weight:500; font-size:0.85rem;
+}
+.step h3{ font-size:1.02rem; margin-top:8px; }
+.step p{ color: var(--ink-soft); font-size:0.88rem; margin-top:6px; }
+
+/* ---------- trust bar ---------- */
+.stats{
+  display:grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+  background: var(--teal-deep); border-radius: 18px; padding: 34px;
+  color: white;
+}
+@media (max-width:760px){ .stats{ grid-template-columns: repeat(2,1fr); } }
+.stat .num{ font-family:'Space Grotesk'; font-size: 2rem; font-weight:700; color: var(--aqua); }
+.stat .cap{ font-size:0.82rem; color: #C9DEDE; margin-top:4px; }
+
+/* ---------- inquiry ---------- */
+.inquiry-shell{
+  display:grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items:start;
+}
+@media (max-width:880px){ .inquiry-shell{ grid-template-columns:1fr; } }
+.form-card{
+  background: var(--panel); border:1px solid var(--line); border-radius:18px; padding:30px;
+}
+.field{ margin-bottom:16px; }
+.field label{ display:block; font-size:0.82rem; font-weight:600; margin-bottom:6px; color: var(--ink); }
+.field input, .field select, .field textarea{
+  width:100%; padding:11px 13px; border-radius:8px; border:1.5px solid var(--line);
+  font-family:'Inter'; font-size:0.92rem; background:#FBFDFD; color: var(--ink);
+}
+.field input:focus, .field select:focus, .field textarea:focus{ border-color: var(--teal); }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:480px){ .field-row{ grid-template-columns:1fr; } }
+.submit-row{ display:flex; align-items:center; gap:14px; margin-top: 6px; }
+.form-note{ font-size:0.78rem; color: var(--ink-soft); }
+.confirm{
+  display:none; background:#E4F2F2; border:1px solid #BFE0E0; color: var(--teal-deep);
+  padding:12px 14px; border-radius:10px; font-size:0.88rem; margin-top:14px;
+}
+.confirm.show{ display:block; }
+
+.side-info{ display:flex; flex-direction:column; gap:16px; }
+.info-row{
+  display:flex; gap:14px; background: var(--panel); border:1px solid var(--line);
+  border-radius:12px; padding:16px 18px;
+}
+.info-row .ic{
+  width:38px; height:38px; border-radius:9px; background: var(--brass-soft); color: var(--brass);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:700;
+}
+.info-row h4{ font-family:'Space Grotesk'; font-size:0.95rem; margin:0; color: var(--ink); }
+.info-row p{ margin:4px 0 0; font-size:0.85rem; color: var(--ink-soft); }
+.info-row a{ color: var(--teal); font-weight:600; text-decoration:none; }
+
+/* ---------- footer ---------- */
+footer{ background: var(--teal-deep); color:#CFE3E3; padding: 40px 0 24px; margin-top:20px; }
+.foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+footer h4{ color:white; font-family:'Space Grotesk'; font-size:0.95rem; margin-bottom:8px; }
+footer p, footer a{ font-size:0.85rem; color:#AFC9C9; text-decoration:none; }
+.foot-bottom{
+  margin-top:30px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.12);
+  font-size:0.76rem; color:#8FB0B0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand">
+      <div class="mark">PT</div>
+      <div>
+        Patel Traders
+        <small>Water Purifiers &amp; RO Systems</small>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#process">Free Testing</a>
+      <a href="#inquiry">Inquiry</a>
+      <a class="call-btn" href="tel:+919876543210">📞 Call Shop</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> FREE ON-SITE WATER TESTING</div>
+        <h1>Know your TDS.<br>Then choose the <em>right</em> filter — not the priciest one.</h1>
+        <p class="lede">Patel Traders has been fitting RO, UV and UF purifiers for homes and shops in the area for over a decade. We test your water first, then recommend equipment that actually matches it.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#inquiry">Request a free water test</a>
+          <a class="btn-ghost" href="#products">See purifiers</a>
+        </div>
+        <div class="trustline">
+          <div><strong>12+ yrs</strong> in the trade</div>
+          <div><strong>3,400+</strong> units installed</div>
+          <div><strong>Same-week</strong> AMC service visits</div>
+        </div>
+      </div>
+
+      <div class="gauge-card">
+        <div class="label-row">
+          <h3>Sample: hard borewell water</h3>
+          <span class="mono" id="gaugeTag">LIVE DEMO</span>
+        </div>
+        <svg class="gauge-svg" viewBox="0 0 300 170" id="gaugeSvg">
+          <defs>
+            <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#C4482E"/>
+              <stop offset="45%" stop-color="#C08A3E"/>
+              <stop offset="100%" stop-color="#22B8CF"/>
+            </linearGradient>
+          </defs>
+          <path d="M 20 150 A 130 130 0 0 1 280 150" fill="none" stroke="#E7EEEE" stroke-width="22" stroke-linecap="round"/>
+          <path d="M 20 150 A 130 130 0 0 1 280 150" fill="none" stroke="url(#gaugeGrad)" stroke-width="22" stroke-linecap="round"/>
+          <line id="needle" x1="150" y1="150" x2="150" y2="40" stroke="#0C2226" stroke-width="4" stroke-linecap="round" style="transform-origin:150px 150px; transform: rotate(-90deg);"/>
+          <circle cx="150" cy="150" r="8" fill="#0C2226"/>
+          <text x="24" y="168" font-family="IBM Plex Mono" font-size="10" fill="#4B6469">0</text>
+          <text x="262" y="168" font-family="IBM Plex Mono" font-size="10" fill="#4B6469">1000+ ppm</text>
+        </svg>
+        <div class="gauge-reading">
+          <span class="num" id="tdsNum">820</span>
+          <span class="unit"> ppm TDS</span>
+          <div class="status" id="tdsStatus">Reading before treatment…</div>
+        </div>
+        <div class="gauge-foot">
+          <div>Recommended: <b>RO + UV combo</b></div>
+          <div>Safe range: <b>50–150 ppm</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="dot"></span> WHAT WE STOCK</div>
+        <h2>Filters for every kind of water problem</h2>
+        <p>Every unit below is stocked with spare cartridges and membranes, so servicing doesn't mean waiting on a supplier.</p>
+      </div>
+      <div class="product-grid">
+
+        <div class="pcard">
+          <div class="tech">RO + UV + UF</div>
+          <h3>Borewell Combo Unit</h3>
+          <p>For hard, high-TDS borewell or tanker water. Removes dissolved salts and kills bacteria.</p>
+          <div class="specs">
+            <span>TDS input: <b>up to 2000 ppm</b></span>
+            <span>Output: <b>12–15 L/hr</b></span>
+            <span>AMC: <b>₹1,200/yr</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('Borewell RO+UV+UF Combo Unit')">Enquire about this →</a>
+        </div>
+
+        <div class="pcard">
+          <div class="tech">UV + UF</div>
+          <h3>Municipal Supply Purifier</h3>
+          <p>For corporation/municipal water that's already low-TDS but needs bacteria and virus removal.</p>
+          <div class="specs">
+            <span>TDS input: <b>under 300 ppm</b></span>
+            <span>Output: <b>10 L/hr</b></span>
+            <span>AMC: <b>₹800/yr</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('Municipal UV+UF Purifier')">Enquire about this →</a>
+        </div>
+
+        <div class="pcard">
+          <div class="tech">GRAVITY-FED</div>
+          <h3>Non-Electric Storage Filter</h3>
+          <p>No power needed — good for areas with frequent outages or as a backup unit.</p>
+          <div class="specs">
+            <span>Capacity: <b>18–22 L</b></span>
+            <span>Candle life: <b>~6 months</b></span>
+            <span>AMC: <b>₹400/yr</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('Gravity-Fed Non-Electric Filter')">Enquire about this →</a>
+        </div>
+
+        <div class="pcard">
+          <div class="tech">COMMERCIAL RO</div>
+          <h3>Shop &amp; Office Unit</h3>
+          <p>Higher throughput for shops, clinics and small offices with steady footfall.</p>
+          <div class="specs">
+            <span>Output: <b>25–50 L/hr</b></span>
+            <span>Tank: <b>50–100 L</b></span>
+            <span>AMC: <b>₹2,500/yr</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('Commercial Shop/Office RO Unit')">Enquire about this →</a>
+        </div>
+
+        <div class="pcard">
+          <div class="tech">SPARES</div>
+          <h3>Membranes &amp; Cartridges</h3>
+          <p>Sediment, carbon and RO membrane replacements for most brands, not just what we sell.</p>
+          <div class="specs">
+            <span>Fits: <b>most major brands</b></span>
+            <span>Stock: <b>in-shop, no wait</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('Spare Membranes/Cartridges')">Enquire about this →</a>
+        </div>
+
+        <div class="pcard">
+          <div class="tech">SERVICE</div>
+          <h3>AMC / Repair Visit</h3>
+          <p>Annual maintenance contracts and one-off repair visits for any brand of purifier.</p>
+          <div class="specs">
+            <span>Visit time: <b>within 48 hrs</b></span>
+            <span>Covers: <b>any brand</b></span>
+          </div>
+          <a class="enquire" href="#inquiry" onclick="presetProduct('AMC / Repair Service Visit')">Enquire about this →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="dot"></span> HOW THE FREE TEST WORKS</div>
+        <h2>Four steps, one visit</h2>
+        <p>We don't sell a unit until we've actually measured your water. Here's what that visit looks like.</p>
+      </div>
+      <div class="process">
+        <div class="step">
+          <div class="n mono">01</div>
+          <h3>Book a visit</h3>
+          <p>Call, WhatsApp, or fill the form — we confirm a time slot the same day.</p>
+        </div>
+        <div class="step">
+          <div class="n mono">02</div>
+          <h3>On-site TDS test</h3>
+          <p>Our technician tests your source water on the spot and shows you the reading.</p>
+        </div>
+        <div class="step">
+          <div class="n mono">03</div>
+          <h3>Honest recommendation</h3>
+          <p>We suggest the simplest unit that fixes your actual water, with pricing upfront.</p>
+        </div>
+        <div class="step">
+          <div class="n mono">04</div>
+          <h3>Install &amp; AMC signup</h3>
+          <p>Installation same week, with an optional annual maintenance plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="num">12+</div><div class="cap">Years trading</div></div>
+        <div class="stat"><div class="num">3,400+</div><div class="cap">Units installed</div></div>
+        <div class="stat"><div class="num">48 hr</div><div class="cap">Service response</div></div>
+        <div class="stat"><div class="num">6</div><div class="cap">Brands stocked</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inquiry">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow"><span class="dot"></span> GET IN TOUCH</div>
+        <h2>Send an inquiry</h2>
+        <p>Fill this in and it opens a pre-filled WhatsApp message straight to the shop — no waiting on a callback.</p>
+      </div>
+      <div class="inquiry-shell">
+        <div class="form-card">
+          <form id="inquiryForm">
+            <div class="field-row">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" required placeholder="e.g. Ramesh Sharma">
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" required placeholder="98765 43210">
+              </div>
+            </div>
+            <div class="field">
+              <label for="area">Area / address</label>
+              <input type="text" id="area" placeholder="Locality or landmark">
+            </div>
+            <div class="field">
+              <label for="product">What do you need?</label>
+              <select id="product">
+                <option>Not sure — need the free water test first</option>
+                <option>Borewell RO+UV+UF Combo Unit</option>
+                <option>Municipal UV+UF Purifier</option>
+                <option>Gravity-Fed Non-Electric Filter</option>
+                <option>Commercial Shop/Office RO Unit</option>
+                <option>Spare Membranes/Cartridges</option>
+                <option>AMC / Repair Service Visit</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Anything else to mention?</label>
+              <textarea id="message" rows="3" placeholder="e.g. Water tastes salty, existing filter stopped working, etc."></textarea>
+            </div>
+            <div class="submit-row">
+              <button type="submit" class="btn-primary">Send via WhatsApp</button>
+              <span class="form-note">Opens WhatsApp with your details filled in</span>
+            </div>
+            <div class="confirm" id="confirmMsg">Details ready — continue in WhatsApp to send them to Patel Traders.</div>
+          </form>
+        </div>
+
+        <div class="side-info">
+          <div class="info-row">
+            <div class="ic">☎</div>
+            <div>
+              <h4>Call the shop</h4>
+              <p><a href="tel:+919876543210">+91 98765 43210</a> — 9:30 AM to 8:00 PM, Mon–Sat</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">💬</div>
+            <div>
+              <h4>WhatsApp</h4>
+              <p><a href="https://wa.me/919876543210" target="_blank" rel="noopener">Message us directly</a> for quick questions</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">📍</div>
+            <div>
+              <h4>Visit us</h4>
+              <p>Shop No. 14, Traders' Market Road, near Water Tank Chowk</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">🕒</div>
+            <div>
+              <h4>Service hours</h4>
+              <p>On-site testing &amp; repair visits: Mon–Sat, 10 AM – 6 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <h4>Patel Traders</h4>
+      <p>Water purifiers, RO systems &amp; AMC service.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <p>Shop No. 14, Traders' Market Road<br>Near Water Tank Chowk</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+      <p><a href="https://wa.me/919876543210">WhatsApp us</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© <span id="year"></span> Patel Traders</span>
+    <span>Placeholder phone/address — replace with your actual details</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Signature gauge animation: needle sweeps from high-TDS to safe range on load
+(function(){
+  const needle = document.getElementById('needle');
+  const num = document.getElementById('tdsNum');
+  const status = document.getElementById('tdsStatus');
+  const tag = document.getElementById('gaugeTag');
+  const start = 820, end = 95;
+  const startAngle = 70, endAngle = -70; // degrees, needle rotates from right-high to left-low visually reversed below
+  let startTime = null;
+  const duration = 2200;
+
+  function ease(t){ return 1 - Math.pow(1-t, 3); }
+
+  function frame(ts){
+    if(!startTime) startTime = ts;
+    const t = Math.min((ts-startTime)/duration, 1);
+    const e = ease(t);
+    const val = Math.round(start + (end-start)*e);
+    // needle rotates from -90+? we set base rotate(-90deg) pointing up; sweep -70..70 relative
+    const angle = -90 + (startAngle + (endAngle-startAngle)*e);
+    needle.style.transform = `rotate(${angle}deg)`;
+    num.textContent = val;
+    if(t < 1){
+      requestAnimationFrame(frame);
+    } else {
+      status.textContent = 'After Patel Traders RO+UV treatment';
+      tag.textContent = 'TREATED';
+    }
+  }
+  requestAnimationFrame(frame);
+})();
+
+function presetProduct(name){
+  const sel = document.getElementById('product');
+  for(const opt of sel.options){
+    if(opt.text === name){ sel.value = name; break; }
+  }
+}
+
+document.getElementById('inquiryForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const area = document.getElementById('area').value.trim();
+  const product = document.getElementById('product').value;
+  const message = document.getElementById('message').value.trim();
+
+  let text = `Hello Patel Traders, I'd like to enquire.%0A`;
+  text += `Name: ${encodeURIComponent(name)}%0A`;
+  text += `Phone: ${encodeURIComponent(phone)}%0A`;
+  if(area) text += `Area: ${encodeURIComponent(area)}%0A`;
+  text += `Interested in: ${encodeURIComponent(product)}%0A`;
+  if(message) text += `Message: ${encodeURIComponent(message)}%0A`;
+
+  const waUrl = `https://wa.me/919876543210?text=${text}`;
+  const confirmBox = document.getElementById('confirmMsg');
+  confirmBox.classList.add('show');
+  window.open(waUrl, '_blank');
+});
+</script>
+
+</body>
+</html>
